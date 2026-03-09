@@ -1,3 +1,7 @@
-# stellar-sky-exploration
+# Stillness - Медитация Hero Section
 
-Initial repository setup for pr-poehali-dev/stellar-sky-exploration
+![Preview](https://cdn.poehali.dev/templates/stillness-meditation/preview-ru.jpg)
+
+Минималистичная hero-секция для приложения или сайта о медитации. Включает полноэкранное фоновое видео с умиротворяющей природой, прозрачную навигацию с blur-эффектом, элегантную типографику и CTA-кнопку. Идеально подходит для wellness-приложений, студий йоги и mindfulness-сервисов.
+
+`"tags": ["hero", "dark", "glass", "wellness", "animations", "video-background"]`
