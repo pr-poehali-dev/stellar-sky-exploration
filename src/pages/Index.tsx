@@ -8,6 +8,7 @@ const slides = [
     title: "Октановая кислота",
     subtitle: "CH₃(CH₂)₆COOH",
     content: "Насыщенная жирная кислота с 8 атомами углерода. Встречается в природе и активно используется в промышленности.",
+    image: "https://cdn.poehali.dev/projects/2c055d2c-0173-4a8c-8d04-009b9a8a5716/files/9859c6a5-d3f6-4e5e-a364-0171654fd9da.jpg",
     note: "",
   },
   {
@@ -124,6 +125,15 @@ const Index = () => {
           <p className="text-gray-600 text-xl font-light leading-relaxed mb-8 max-w-2xl" style={{ fontFamily: "sans-serif" }}>
             {slide.content}
           </p>
+        )}
+
+        {"image" in slide && slide.image && (
+          <img
+            src={slide.image}
+            alt="Октановая кислота"
+            className="mt-2 rounded-lg object-contain bg-white border border-gray-100"
+            style={{ maxHeight: 220, maxWidth: 360 }}
+          />
         )}
 
         {slide.bullets && (
