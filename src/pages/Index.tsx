@@ -1,74 +1,172 @@
-import { ChevronDown } from "lucide-react"
+import { useState } from "react"
+import Icon from "@/components/ui/icon"
+
+const slides = [
+  {
+    id: 1,
+    label: "Введение",
+    title: "Октановая кислота",
+    subtitle: "CH₃(CH₂)₆COOH",
+    content: "Насыщенная жирная кислота с 8 атомами углерода. Встречается в природе и активно используется в промышленности.",
+    note: "",
+  },
+  {
+    id: 2,
+    label: "В природе",
+    title: "В природе",
+    subtitle: "",
+    content: "",
+    bullets: [
+      "Содержится в кокосовом масле (~8%)",
+      "Присутствует в пальмовом масле и молоке животных",
+      "Входит в состав грудного молока",
+      "Вырабатывается некоторыми растениями как защитное вещество",
+      "Придаёт характерный запах козьему и коровьему молоку",
+    ],
+    note: "",
+  },
+  {
+    id: 3,
+    label: "Свойства",
+    title: "Физические свойства",
+    subtitle: "",
+    content: "",
+    bullets: [
+      "Маслянистая жидкость с резким запахом",
+      "Температура плавления: 16–17 °C",
+      "Температура кипения: 239–240 °C",
+      "Плохо растворима в воде",
+      "Хорошо растворима в органических растворителях",
+    ],
+    note: "",
+  },
+  {
+    id: 4,
+    label: "Производство",
+    title: "Производство",
+    subtitle: "",
+    content: "",
+    bullets: [
+      "Получают гидролизом кокосового и пальмового масла",
+      "Синтезируют окислением октанола",
+      "Производят ферментацией органических субстратов",
+      "Мировое производство — десятки тысяч тонн в год",
+    ],
+    note: "",
+  },
+  {
+    id: 5,
+    label: "Применение",
+    title: "Применение в промышленности",
+    subtitle: "",
+    content: "",
+    bullets: [
+      "Производство пищевых добавок (E570)",
+      "Компонент парфюмерии и ароматизаторов",
+      "Антигрибковые и антибактериальные препараты",
+      "Пластификаторы и смазочные материалы",
+      "Основа для эфиров — растворители и биодизель",
+    ],
+    note: "",
+  },
+  {
+    id: 6,
+    label: "Итог",
+    title: "Вывод",
+    subtitle: "",
+    content: "Октановая кислота — широко распространённое природное соединение с ценными химическими свойствами. Её доступность из растительного сырья и многофункциональность делают её важным компонентом современной промышленности.",
+    note: "Спасибо за внимание",
+  },
+]
 
 const Index = () => {
+  const [current, setCurrent] = useState(0)
+
+  const slide = slides[current]
+
+  const prev = () => setCurrent((c) => Math.max(0, c - 1))
+  const next = () => setCurrent((c) => Math.min(slides.length - 1, c + 1))
+
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* Background Video */}
-      <video className="absolute inset-0 w-full h-full object-cover z-0" autoPlay muted loop playsInline>
-        <source
-          src="https://res.cloudinary.com/doevp9obh/video/upload/v1751630378/social_u7865913127_httpss.mj.runfy9I6hP3bjY_A_serene_cinematic_anima_3732f431-944f-4ee3-9b66-c82c1462de47_1_vjttzg.mp4"
-          type="video/mp4"
-        />
-      </video>
+    <div className="min-h-screen bg-[#f5f3ef] flex flex-col" style={{ fontFamily: "'Georgia', serif" }}>
 
-      {/* Video Overlay */}
-      <div className="absolute inset-0 bg-black/20 z-0" />
-
-      {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-sm py-4 px-6">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="text-white font-serif text-xl">Stillness</div>
-
-          {/* Navigation Links */}
-          <div className="flex items-center gap-8 text-white/90 font-sans text-sm font-light">
-            <a href="#" className="hover:text-white hover:scale-105 transition-colors duration-300">
-              Наша миссия
-            </a>
-            <a href="#" className="hover:text-white hover:scale-105 transition-colors duration-300">
-              Поддержать
-            </a>
-            <a href="#" className="hover:text-white hover:scale-105 transition-colors duration-300">
-              Контакты
-            </a>
-            <button className="flex items-center gap-1 hover:text-white hover:scale-105 transition-colors duration-300 cursor-pointer">
-              RU
-              <ChevronDown size={14} />
-            </button>
-          </div>
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-10 py-5 border-b border-gray-200">
+        <span className="text-gray-400 text-sm tracking-widest uppercase">Химия · 9 класс</span>
+        <div className="flex gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current ? "bg-gray-700 w-5" : "bg-gray-300"}`}
+            />
+          ))}
         </div>
-      </nav>
-
-      {/* Hero Content */}
-      <div className="relative z-10 flex items-center h-screen">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-2xl fade-in">
-            {/* Hero Heading */}
-            <h1 className="font-serif text-white text-4xl lg:text-6xl font-normal tracking-tight mb-8">
-              Обрети покой на грани <em>тишины</em>
-            </h1>
-
-            {/* Hero Subheading */}
-            <p className="font-sans text-gray-200 text-lg lg:text-xl font-light leading-relaxed mb-12 max-w-xl">
-              Открой умиротворение через осознанную медитацию и прикоснись к глубокой тишине, что живёт между мыслями и дыханием.
-            </p>
-
-            {/* Call to Action Button */}
-            <button className="bg-white text-gray-900 font-sans font-medium px-6 py-3 rounded-lg text-base hover:bg-gray-100 hover:scale-105 hover:shadow-lg transition-all duration-300">
-              Начать путь
-            </button>
-          </div>
-        </div>
+        <span className="text-gray-400 text-sm">{current + 1} / {slides.length}</span>
       </div>
 
-      {/* Footer */}
-      <div className="absolute bottom-6 left-0 right-0 z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center">
-            <p className="font-sans text-white/70 text-xs font-light">2025 Stillness. Все права защищены.</p>
-            <p className="font-sans text-white/70 text-xs font-light">Создано с осознанностью</p>
-          </div>
-        </div>
+      {/* Slide content */}
+      <div className="flex-1 flex flex-col justify-center px-16 py-12 max-w-4xl mx-auto w-full">
+
+        {slide.label && (
+          <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-6">{slide.label}</p>
+        )}
+
+        <h1 className="text-5xl font-normal text-gray-800 mb-3 leading-tight">
+          {slide.title}
+        </h1>
+
+        {slide.subtitle && (
+          <p className="text-2xl text-gray-400 font-mono mb-8">{slide.subtitle}</p>
+        )}
+
+        {slide.content && (
+          <p className="text-gray-600 text-xl font-light leading-relaxed mb-8 max-w-2xl" style={{ fontFamily: "sans-serif" }}>
+            {slide.content}
+          </p>
+        )}
+
+        {slide.bullets && (
+          <ul className="space-y-4 mt-2">
+            {slide.bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-3 text-gray-600 text-lg" style={{ fontFamily: "sans-serif" }}>
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {slide.note && (
+          <p className="mt-12 text-gray-400 text-base italic">{slide.note}</p>
+        )}
+      </div>
+
+      {/* Bottom navigation */}
+      <div className="flex items-center justify-between px-10 py-6 border-t border-gray-200">
+        <button
+          onClick={prev}
+          disabled={current === 0}
+          className="flex items-center gap-2 text-gray-400 hover:text-gray-700 disabled:opacity-20 transition-colors text-sm"
+          style={{ fontFamily: "sans-serif" }}
+        >
+          <Icon name="ArrowLeft" size={16} />
+          Назад
+        </button>
+
+        <span className="text-gray-300 text-xs tracking-widest uppercase" style={{ fontFamily: "sans-serif" }}>
+          Октановая кислота в природе и на производстве
+        </span>
+
+        <button
+          onClick={next}
+          disabled={current === slides.length - 1}
+          className="flex items-center gap-2 text-gray-400 hover:text-gray-700 disabled:opacity-20 transition-colors text-sm"
+          style={{ fontFamily: "sans-serif" }}
+        >
+          Далее
+          <Icon name="ArrowRight" size={16} />
+        </button>
       </div>
     </div>
   )
